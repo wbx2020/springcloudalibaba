@@ -1,0 +1,22 @@
+server:
+  port: 3377
+spring:
+  profiles:
+    active: ${PROFILES_ACTIVE:test}
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        namespace: ${spring.profiles.active}
+      config:
+        enabled: true
+        namespace: ${spring.profiles.active}
+        group: ${spring.application.name}
+        file-extension: yaml
+        prefix: ${spring.application.name}-application
+        extension-configs:
+          - data-id: ${spring.application.name}-system.yaml
+            group: SYS
+            refresh: true
