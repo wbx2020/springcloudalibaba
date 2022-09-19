@@ -21,6 +21,11 @@ public class FlowLimitController {
     @GetMapping("/testA")
     public String testA()
     {
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         RestTemplate restTemplate = new RestTemplate();
         String forObject = restTemplate.getForObject(url, String.class);
         testService.common();
